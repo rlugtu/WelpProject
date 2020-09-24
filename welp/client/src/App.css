@@ -1,0 +1,269 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+}
+.App {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+.searchControllerContainer {
+  height: 100%;
+}
+/* NAV */
+.navLogo {
+  padding: 20px 0;
+  cursor: pointer;
+}
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(245, 245, 245, 1);
+}
+/* HOME */
+.homeNav {
+  display: flex;
+  width: 90%;
+  justify-content: flex-end;
+  margin-top: 3vh;
+}
+.homeNav > Button {
+  margin: 0 20px;
+  font-size: 1.1rem;
+}
+.navLogButtons {
+  display: flex;
+  justify-content: space-between;
+  width: 220px;
+}
+.loginButtons {
+  height: 3rem;
+  width: 100px;
+}
+
+/* LOGIN  */
+a {
+  color: black;
+  text-decoration: none;
+}
+.loginButtons a {
+  color: white;
+}
+.loginContainer {
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+}
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+}
+.usernameInput,
+.passwordInput {
+  border-radius: 5px;
+  margin: 5px 0;
+  padding: 10px;
+  width: 100%;
+  background-color: white;
+  -webkit-autofill: white;
+}
+
+/* REGISTER FORM  */
+.registerContainer {
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+}
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+/* SEARCH BAR ONLY */
+.searchBarContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    1px 5px 6px 1px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+.searchBarForm {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-width: 45vw;
+  overflow: hidden;
+}
+.MuiInput-underline:before {
+  border-bottom: none;
+}
+
+.searchBarLeftInput,
+.searchBarRightInput {
+  padding: 10px;
+  width: 100%;
+  background-color: white;
+}
+.searchBarLeftInput {
+  border: none;
+  -webkit-autofill: white;
+
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.searchBarRightInput {
+  width: 50%;
+  -webkit-autofill: white;
+  border-left: 1px solid black;
+  /* border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px; */
+}
+.searchBarButton {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+/*  HOME PAGE  */
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background-image: url("https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1655&q=80");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.homeLogo {
+  margin-top: 100px;
+}
+.searchBarHome {
+  margin-top: 100px;
+  width: 50%;
+}
+
+/* SEARCH PAGE */
+.searchResultsContainer {
+  height: 85vh;
+  overflow: scroll;
+  width: 100%;
+}
+.servicesSearchContainer {
+  display: flex;
+  justify-content: center;
+  margin: 30px 200px;
+  padding: 20px;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    1px 5px 6px 1px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 5px;
+}
+.servicesSearchContainer:hover {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.serviceSearchDiv {
+  display: flex;
+  width: 20%;
+  padding: 20px;
+  flex-grow: 2;
+  cursor: pointer;
+}
+.searchServiceImage {
+  border-radius: 5px;
+}
+.serviceSearchInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 20px;
+  list-style: none;
+}
+.serviceSearchInfo h1 {
+  margin: 0;
+}
+.serviceSearchCategories p {
+  display: flex;
+  margin: 0;
+}
+
+.serviceUserOptions {
+  padding: 20px;
+  flex-grow: 1;
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.servicePhotoCarousel {
+  max-height: 500px;
+  max-width: 500px;
+  border: 1px solid lightgray;
+  padding: 20px;
+  margin: 20px;
+}
+/* SERVICE PAGE  */
+
+.serviceLeftContainer {
+  font-size: 1.5rem;
+}
+.serviceName {
+  margin: 20px 0;
+}
+.foodCarouselPhoto {
+  max-height: 400px;
+  max-width: 500px;
+  overflow: hidden;
+  object-fit: cover;
+}
+.serviceHours {
+  padding: 20px;
+}
+.serviceContainer {
+  display: flex;
+  justify-content: center;
+}
+.serviceContent {
+  display: flex;
+  justify-content: space-between;
+  height: 100vh;
+  width: 1200px;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    1px 5px 6px 1px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 5px;
+  margin: 30px 50px;
+  padding: 40px;
+}
+
+/* REVIEW FORM */
+.reviewForm {
+  width: 500px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+.reviewHeader {
+  margin: 0;
+}
+.reviewTextBox {
+  font-size: 1.5rem;
+  border: 1px solid black;
+}

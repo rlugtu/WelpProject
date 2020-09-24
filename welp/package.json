@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "@material-ui/styles": "^4.10.0",
+    "query-string": "^6.13.2",
+    "react-alice-carousel": "^1.19.3",
+    "react-elastic-carousel": "^0.7.5",
+    "react-router-dom": "^5.2.0",
+    "styled-components": "^5.2.0",
+    "yelp-fusion": "^3.0.0"
+  }
+}
