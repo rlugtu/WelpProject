@@ -34,6 +34,7 @@ const SearchController = (props) => {
             serviceResult={props.serviceResult}
             setServiceResult={props.setServiceResult}
             isLoggedIn={props.isLoggedIn}
+            userInfo={props.userInfo}
           />
         );
       default:

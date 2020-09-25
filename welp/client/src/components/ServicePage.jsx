@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import AliceCarousel from "react-alice-carousel";
 
-import ServiceReviews from "./ServiceReviews";
 import ReviewForm from "./ReviewForm";
-
+import { Rating } from "@material-ui/lab";
 import "react-alice-carousel/lib/alice-carousel.css";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
@@ -206,6 +205,7 @@ const ServicePage = (props) => {
           rating: reviewRating,
           description: reviewDescription,
           yelp_id: serviceYelp_id,
+          username: props.userInfo.user.name,
         },
       }),
       headers: {
@@ -315,7 +315,12 @@ const ServicePage = (props) => {
                 <h2>Reviews</h2>
                 {serviceReviews.review.map((review, i) => (
                   <div key={i} className="individualReviews">
-                    <p>{review.rating}</p>
+                    <h3 className="reviewUser">{review.username}</h3>
+                    <Rating
+                      name="reviewRating"
+                      value={review.rating}
+                      readOnly
+                    />
                     <p>{review.description}</p>
                   </div>
                 ))}

@@ -184,6 +184,7 @@ function App() {
               setLocation={setLocation}
               term={term}
               location={location}
+              userInfo={userInfo}
             />
           )}
         />

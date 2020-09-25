@@ -50,7 +50,7 @@ class ReviewsController < ApiController
 
     private
     def review_params
-        params.require(:review).permit(:service_id, :description, :rating, :name, :yelp_id)
+        params.require(:review).permit(:service_id, :description, :rating, :name, :yelp_id, :username)
     end
 
 end

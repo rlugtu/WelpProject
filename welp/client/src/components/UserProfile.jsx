@@ -36,7 +36,6 @@ const UserProfile = (props) => {
   // update user info every mount
   useEffect(() => {
     props.getUserInfo();
-    console.log(process.env);
   }, []);
 
   // DELETE BOOKMARK FUNCTION
@@ -171,6 +170,7 @@ const UserProfile = (props) => {
                 {props.userInfo.reviews &&
                   props.userInfo.reviews.map((review, i) => (
                     <div key={i} className="individualReviewContainer">
+                      <h3>{review.name}</h3>
                       <Rating
                         name="reviewRating"
                         value={review.rating}
