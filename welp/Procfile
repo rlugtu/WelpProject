@@ -1,3 +1,2 @@
-web: NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client
-
-api: bundle exec rails s -p $PORT
+web: bundle exec rails s
+release: bin/rake db:migrate 
