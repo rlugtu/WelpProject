@@ -5,9 +5,15 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Rating } from "@material-ui/lab";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import EditIcon from "@material-ui/icons/Edit";
+import TextField from "@material-ui/core/TextField";
+import Auth from "../modules/Auth";
+
 const style = makeStyles({
   serviceButton: {
     margin: 5,
+  },
+  editButton: {
+    marginTop: 10,
   },
 });
 const UserProfile = (props) => {
@@ -15,6 +21,9 @@ const UserProfile = (props) => {
 
   const [showBookmarks, setShowBookmarks] = useState(true);
   const [showReviews, setShowReviews] = useState(false);
+  const [openTextBox, setOpenTextBox] = useState(false);
+  const [reviewRating, setReviewRating] = useState(null);
+  const [reviewDescription, setReviewDescription] = useState(null);
 
   const triggerShowBookmarks = () => {
     setShowBookmarks(true);
@@ -29,7 +38,7 @@ const UserProfile = (props) => {
     props.getUserInfo();
   }, []);
 
-  // DELETE Reviews && BOOKMARK FUNCTIONS
+  // DELETE BOOKMARK FUNCTION
   const deleteBookmark = (id) => {
     fetch(`/bookmarks/${id}`, {
       method: "DELETE",
@@ -43,6 +52,52 @@ const UserProfile = (props) => {
       .catch((err) => console.log(err));
     props.getUserInfo();
   };
+
+  // UPDATE REVIEW AND DELETE REVIEW FUNCTIONS
+  const createTextBox = () => {
+    setOpenTextBox(!openTextBox);
+  };
+
+  const updateReview = (id) => {
+    fetch(`/reviews/${id}`, {
+      method: "PUT",
+      credentials: "include",
+      body: JSON.stringify({
+        review: {
+          rating: reviewRating,
+          description: reviewDescription,
+        },
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${Auth.getToken()}`,
+        token: Auth.getToken(),
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const deleteReview = (id) => {
+    props.getUserInfo();
+
+    fetch(`/reviews/${id}`, {
+      method: "DELETE",
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        console.log("hi");
+      })
+      .catch((err) => console.log(err));
+    props.getUserInfo();
+  };
+
   return (
     <div>
       <Navbar
@@ -98,7 +153,10 @@ const UserProfile = (props) => {
                         variant="contained"
                         color="primary"
                         className={classes.serviceButton}
-                        onClick={() => deleteBookmark(bookmark.id)}
+                        onClick={() => {
+                          deleteBookmark(bookmark.id);
+                          props.getUserInfo();
+                        }}
                       >
                         <HighlightOffIcon />
                       </Button>
@@ -119,10 +177,59 @@ const UserProfile = (props) => {
                       />
                       <p>{review.description}</p>
                       <p>{review.created_at}</p>
+                      {openTextBox && (
+                        <form
+                          onSubmit={() => updateReview(review.id)}
+                          className="reviewForm"
+                        >
+                          <h2 className="reviewHeader">What do you think?</h2>
+                          <h4>Rating</h4>
+                          <Rating
+                            name="reviewRating"
+                            value={reviewRating}
+                            precision={0.5}
+                            onChange={(e) => setReviewRating(e.target.value)}
+                            required
+                          />
+                          <h4>Description</h4>
+                          <TextField
+                            //   id="standard-multiline-flexible"
+                            multiline
+                            rows="4"
+                            variant="outlined"
+                            className="reviewTextBox"
+                            value={reviewDescription}
+                            required
+                            onChange={(e) =>
+                              setReviewDescription(e.target.value)
+                            }
+                            //   margin="normal"
+                          />
+
+                          <Button
+                            type="submit"
+                            className={classes.editButton}
+                            variant="contained"
+                            color="primary"
+                          >
+                            Submit
+                          </Button>
+                          <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            className={classes.editButton}
+                            onClick={() => createTextBox()}
+                          >
+                            Cancel
+                          </Button>
+                        </form>
+                      )}
                       <Button
                         variant="contained"
                         color="primary"
                         className={classes.serviceButton}
+                        onClick={() => createTextBox()}
                       >
                         <EditIcon />
                       </Button>
@@ -130,6 +237,10 @@ const UserProfile = (props) => {
                         variant="contained"
                         color="primary"
                         className={classes.serviceButton}
+                        onClick={() => {
+                          deleteReview(review.id);
+                          props.getUserInfo();
+                        }}
                       >
                         <HighlightOffIcon />
                       </Button>

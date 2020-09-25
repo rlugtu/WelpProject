@@ -23,6 +23,7 @@ const ReviewForm = (props) => {
           rows="4"
           variant="outlined"
           className="reviewTextBox"
+          required
           value={props.reviewDescription}
           onChange={(e) => props.setReviewDescription(e.target.value)}
           //   margin="normal"

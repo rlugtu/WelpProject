@@ -8,8 +8,9 @@ class ReviewsController < ApiController
 
     def show
         review = Review.find(params[:id])
-        review_user = review.review_user
+        review_user = review.user
         render json: { review: review, username: review_user.username}
+        # render json: { review: review, username: review_user.username}
     end
 
     def show_service_reviews
@@ -28,6 +29,15 @@ class ReviewsController < ApiController
             }
         else
             render json: {message: 'could not create review'}
+        end
+    end
+
+    def update
+        review = Review.find(params[:id])
+        if review.update(review_params)
+            render json: review
+        else
+            render json: review.errors, status: :unprocessable_entity
         end
     end
 
