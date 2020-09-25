@@ -47,6 +47,7 @@ function App() {
           setAuth(Auth.isUserAuthenticated());
           setUsername("");
           setPassword("");
+          console.log("Auth", Auth);
           setIsLoggedIn(true);
           // console.log(Auth);
         }
@@ -111,6 +112,7 @@ function App() {
               setLocation={setLocation}
               term={term}
               location={location}
+              Auth={Auth}
             />
           )}
         />

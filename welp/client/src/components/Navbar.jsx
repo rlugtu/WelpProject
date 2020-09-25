@@ -79,8 +79,6 @@ const Navbar = (props) => {
             </div>
           )}
         </Toolbar>
-        {/* isLoggedIn ={isLoggedIn} */}
-
         <div></div>
       </AppBar>
       <div className={classes.toolbarMargin} />
