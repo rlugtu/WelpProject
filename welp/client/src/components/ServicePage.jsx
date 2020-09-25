@@ -179,6 +179,7 @@ const ServicePage = (props) => {
         bookmark: {
           service_id: serviceUniqueID,
           yelp_id: serviceYelp_id,
+          name: serviceName,
         },
       }),
       headers: {
