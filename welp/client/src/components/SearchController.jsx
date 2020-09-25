@@ -17,9 +17,6 @@ const SearchController = (props) => {
   //   setResults(results);
   // };
 
-  // useEffect(() => {
-
-  // },[searchResults])
   let decideWhichToRender = () => {
     switch (currentPage) {
       case "search":
@@ -36,6 +33,7 @@ const SearchController = (props) => {
             setCurrentPage={setCurrentPage}
             serviceResult={props.serviceResult}
             setServiceResult={props.setServiceResult}
+            isLoggedIn={props.isLoggedIn}
           />
         );
       default:

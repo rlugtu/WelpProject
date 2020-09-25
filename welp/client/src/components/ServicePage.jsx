@@ -190,6 +190,7 @@ const ServicePage = (props) => {
     })
       .then((res) => res.json())
       .then((res) => {
+        if (!props.isLoggedIn) alert("Please Log In");
         // console.log(res);
       })
       .catch((err) => {
@@ -248,7 +249,11 @@ const ServicePage = (props) => {
   };
   const activateReviewBox = () => {
     saveService();
-    setActivateReview(!activateReview);
+    if (props.isLoggedIn) {
+      setActivateReview(!activateReview);
+    } else {
+      alert("Please Log In");
+    }
   };
   const userReviewSubmit = (e) => {
     reviewSubmit(e);

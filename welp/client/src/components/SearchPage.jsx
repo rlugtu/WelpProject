@@ -7,6 +7,9 @@ const SearchPage = (props) => {
 
   //   setResults(result);
   //   console.log(results);
+  const saveData = () => {
+    props.setServiceResult();
+  };
   return (
     <div className="searchResultsContainer">
       {props.results ? (
@@ -16,6 +19,7 @@ const SearchPage = (props) => {
             key={i}
             onClick={() => {
               props.setServiceResult(item.id);
+              localStorage.setItem("serviceResult", JSON.stringify(item.id));
             }}
           >
             <div className="servicesSearchContainer">
