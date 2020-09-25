@@ -16,7 +16,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "cp -a ./build/. ../public/",
-    "heroku-postbuild": "yarn build && yarn deploy"
+    "heroku-postbuild": "npm build && npm deploy"
   },
   "eslintConfig": {
     "extends": "react-app"
