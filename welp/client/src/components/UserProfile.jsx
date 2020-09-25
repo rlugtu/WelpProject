@@ -3,7 +3,8 @@ import Navbar from "./Navbar";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import { Rating } from "@material-ui/lab";
-
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import EditIcon from "@material-ui/icons/Edit";
 const style = makeStyles({
   serviceButton: {
     margin: 5,
@@ -27,6 +28,21 @@ const UserProfile = (props) => {
   useEffect(() => {
     props.getUserInfo();
   }, []);
+
+  // DELETE Reviews && BOOKMARK FUNCTIONS
+  const deleteBookmark = (id) => {
+    fetch(`/bookmarks/${id}`, {
+      method: "DELETE",
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        console.log("hi");
+      })
+      .catch((err) => console.log(err));
+    props.getUserInfo();
+  };
   return (
     <div>
       <Navbar
@@ -78,6 +94,14 @@ const UserProfile = (props) => {
                   props.userInfo.bookmarks.map((bookmark, i) => (
                     <div className="individualBookmarkContainer" key={i}>
                       <p>{bookmark.name}</p>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        className={classes.serviceButton}
+                        onClick={() => deleteBookmark(bookmark.id)}
+                      >
+                        <HighlightOffIcon />
+                      </Button>
                     </div>
                   ))}
               </div>
@@ -95,6 +119,20 @@ const UserProfile = (props) => {
                       />
                       <p>{review.description}</p>
                       <p>{review.created_at}</p>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        className={classes.serviceButton}
+                      >
+                        <EditIcon />
+                      </Button>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        className={classes.serviceButton}
+                      >
+                        <HighlightOffIcon />
+                      </Button>
                     </div>
                   ))}
               </div>

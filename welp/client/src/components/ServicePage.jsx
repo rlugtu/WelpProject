@@ -5,11 +5,9 @@ import ServiceReviews from "./ServiceReviews";
 import ReviewForm from "./ReviewForm";
 
 import "react-alice-carousel/lib/alice-carousel.css";
-import Carousel from "react-elastic-carousel";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Auth from "../modules/Auth";
-
 const style = makeStyles({
   serviceButton: {
     margin: 5,
@@ -258,6 +256,8 @@ const ServicePage = (props) => {
   const userReviewSubmit = (e) => {
     reviewSubmit(e);
   };
+
+  // DELETE REVIEWS & DELETE BOOKMARKS FUNCTION
 
   return (
     <div className="serviceContainer">

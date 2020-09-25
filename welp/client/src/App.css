@@ -319,6 +319,15 @@ a {
     1px 5px 6px 1px rgba(254, 152, 0, 0.5),
     0px 1px 10px 0px rgba(254, 152, 0, 0.5);
 }
+.individualBookmarkContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.deleteButton {
+  height: 3rem;
+  width: 100px;
+  color: orange;
+}
 
 .testFooter {
   background-color: rgba(245, 245, 245, 1);

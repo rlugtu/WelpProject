@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 const SearchPage = (props) => {
-  //   let resultsRaw = localStorage.getItem("searchResults");
-  //   let result = JSON.parse(resultsRaw);
-  //   const [results, setResults] = useState(result);
+  // let resultsRaw = localStorage.getItem("searchResults");
+  // let result = JSON.parse(resultsRaw);
+  // const [results, setResults] = useState(result);
 
-  //   setResults(result);
-  //   console.log(results);
+  // setResults(result);
+  // console.log(results);
   const saveData = () => {
     props.setServiceResult();
   };
@@ -19,7 +19,7 @@ const SearchPage = (props) => {
             key={i}
             onClick={() => {
               props.setServiceResult(item.id);
-              localStorage.setItem("serviceResult", JSON.stringify(item.id));
+              // localStorage.setItem("serviceResult", JSON.stringify(item.id));
             }}
           >
             <div className="servicesSearchContainer">
