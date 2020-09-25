@@ -86,7 +86,7 @@ const RegisterForm = (props) => {
           name="state"
           color="primary"
           onInput={(e) => setState(e.target.value)}
-          placeholder="state"
+          placeholder="State"
           className="usernameInput"
           value={state}
         />
