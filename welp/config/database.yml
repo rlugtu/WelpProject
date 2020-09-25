@@ -78,15 +78,15 @@ test:
 #
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
-#
+# #
 production:
-  # <<: *default
-  # database: welp_production
-  # username: welp
-  # password: <%= ENV['WELP_DATABASE_PASSWORD'] %>
-
-  production:
-  url: <%= ENV['DATABASE_URL'] %>
+  <<: *default
   database: welp_production
   username: welp
-  password: <%= ENV['welp_DATABASE_PASSWORD'] %>
+  password: <%= ENV['WELP_DATABASE_PASSWORD'] %>
+
+  # production:
+  # url: <%= ENV['DATABASE_URL'] %>
+  # database: welp_production
+  # username: welp
+  # password: <%= ENV['welp_DATABASE_PASSWORD'] %>
