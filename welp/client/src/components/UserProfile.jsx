@@ -36,6 +36,7 @@ const UserProfile = (props) => {
   // update user info every mount
   useEffect(() => {
     props.getUserInfo();
+    console.log(process.env);
   }, []);
 
   // DELETE BOOKMARK FUNCTION
