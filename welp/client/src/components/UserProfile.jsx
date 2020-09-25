@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 const UserProfile = (props) => {
-  // const [userInfo, setUserInfo] = useState(null);
+  // update user info every mount
+  useEffect(() => {
+    props.getUserInfo();
+  }, []);
   return (
     <div>
       <Navbar
@@ -22,6 +25,14 @@ const UserProfile = (props) => {
             <p>{props.userInfo.user.city}</p>
             <p>{props.userInfo.user.state}</p>
             <p>{props.userInfo.user.zip_code}</p>
+          </div>
+          <div>
+            {props.userInfo.bookmarks &&
+              props.userInfo.bookmarks.map((bookmark, i) => (
+                <div className="individualBookmarkContainer">
+                  <p>hey</p>
+                </div>
+              ))}
           </div>
           <div className="reviewsContainer">
             {props.userInfo.reviews &&

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Route, Redirect } from "react-router-dom";
 
@@ -95,9 +95,9 @@ function App() {
     });
   };
 
-  const handleInputChange = () => {};
   return (
     <ThemeProvider theme={theme}>
+      {isLoggedIn && <Redirect to="/user" />}
       <div className="App">
         <Route
           exact
@@ -132,7 +132,6 @@ function App() {
             />
           )}
         />
-        {isLoggedIn && <Redirect to="/user" />}
         <Route
           exact
           path="/user"

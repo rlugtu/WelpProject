@@ -74,12 +74,14 @@ const SearchBar = (props) => {
           onInput={(e) => props.setTerm(e.target.value)}
           placeholder="Keyword"
           className="searchBarLeftInput"
+          required
           value={props.term}
         />
         <Input
-          name="Location"
-          placeholder="location"
+          name="location"
+          placeholder="Location"
           className="searchBarRightInput"
+          required
           onInput={(e) => props.setLocation(e.target.value)}
           value={props.location}
         />

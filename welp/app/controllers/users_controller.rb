@@ -1,6 +1,10 @@
 class UsersController < ApiController
-before_action :require_login, except: [:create]
+before_action :require_login, except: [:create, :index, :destroy]
     
+def index
+  users = User.all
+  render json: {users: users}
+end
   def create
     user = User.create!(user_params)
     render json: { token: user.auth_token }
@@ -12,6 +16,12 @@ before_action :require_login, except: [:create]
     user_bookmarks = Bookmark.where(user_id: user.id)
     render json: { user: { username: user.username, email: user.email, name: user.name, about: user.about, state: user.state, city: user.city, zip_code: user.zip_code, birthday: user.birthday }, reviews: user_reviews, bookmarks: user_bookmarks}
 
+  end
+
+  def destroy 
+    user = User.find(params[:id])
+    user.destroy
+    head :ok
   end
 
   private

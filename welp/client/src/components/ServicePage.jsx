@@ -178,6 +178,7 @@ const ServicePage = (props) => {
       body: JSON.stringify({
         bookmark: {
           service_id: serviceUniqueID,
+          yelp_id: serviceYelp_id,
         },
       }),
       headers: {

@@ -31,6 +31,6 @@ class BookmarksController < ApiController
 
     private
     def bookmark_params
-        params.require(:bookmark).permit(:service_id, :user_id)
+        params.require(:bookmark).permit(:service_id, :user_id, :yelp_id)
     end
 end
