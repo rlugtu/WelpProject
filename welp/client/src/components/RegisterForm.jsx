@@ -54,7 +54,7 @@ const RegisterForm = (props) => {
   };
   return (
     <div className="registerContainer">
-      {fireRedirect && <Redirect to="/login" />}
+      {fireRedirect && <Redirect to="/user" />}
       <form onSubmit={handleRegisterSubmit} className="registerForm">
         <h1>Register</h1>
         <Input

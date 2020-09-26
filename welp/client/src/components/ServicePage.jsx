@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from "react";
 import AliceCarousel from "react-alice-carousel";
-
+import { Link } from "react-router-dom";
 import ReviewForm from "./ReviewForm";
 import { Rating } from "@material-ui/lab";
 import "react-alice-carousel/lib/alice-carousel.css";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Auth from "../modules/Auth";
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
 const style = makeStyles({
   serviceButton: {
     margin: 5,
+    contrastText: "#fff",
+  },
+  dialogue: {
+    padding: 10,
   },
 });
 const ServicePage = (props) => {
@@ -43,6 +50,16 @@ const ServicePage = (props) => {
   // db id
   const [serviceUniqueID, setServiceUniqueID] = useState(null);
 
+  // BUTTON STATES
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   useEffect(() => {
     fetch(
       `https://cors-anywhere.herokuapp.com/api.yelp.com/v3/businesses/${props.serviceResult}`,
@@ -261,7 +278,7 @@ const ServicePage = (props) => {
 
   return (
     <div className="serviceContainer">
-      {serviceInfo ? (
+      {serviceInfo && !serviceInfo.error ? (
         <div className="serviceContent">
           <div className="serviceLeftContainer">
             <h1 className="serviceName">{serviceInfo.name}</h1>
@@ -271,29 +288,96 @@ const ServicePage = (props) => {
                   <p key={i}>{category.title}</p>
                 ))}
             </div>
-            <p>{serviceInfo.price}</p>
+            <Rating
+              name="reviewRating"
+              value={serviceInfo.price.length}
+              readOnly
+              icon={<MonetizationOnIcon />}
+            />
+
             <p>{serviceInfo.is_closed}</p>
             <p>{serviceInfo.display_phone}</p>
             <p>{serviceInfo.location.display_address[0]}</p>
             <p>{serviceInfo.location.display_address[1]}</p>
             <div className="serviceButtonContainer">
-              <Button
-                variant="contained"
-                color="primary"
-                className="servicePageButtons"
-                className={classes.serviceButton}
-                onClick={() => userBookmarkService()}
-              >
-                Bookmark
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                className={classes.serviceButton}
-                onClick={() => activateReviewBox()}
-              >
-                Write a Review
-              </Button>
+              {/* LOGGED IN BOOKMARK BUTTON */}
+              {props.isLoggedIn && (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className="servicePageButtons"
+                  className={classes.serviceButton}
+                  onClick={() => userBookmarkService()}
+                >
+                  Bookmark
+                </Button>
+              )}
+              {/* IS NOT LOGGED IN  BOOKMARK BUTTON*/}
+              {!props.isLoggedIn && (
+                <div>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className="servicePageButtons"
+                    className={classes.serviceButton}
+                    onClick={handleClickOpen}
+                  >
+                    Bookmark
+                  </Button>
+                  <Dialog open={open} onClose={handleClose}>
+                    <DialogTitle className={classes.dialogue}>
+                      Please Login
+                    </DialogTitle>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={classes.serviceButton}
+                    >
+                      <Link to="/login"> Login Here</Link>
+                    </Button>
+                  </Dialog>
+                </div>
+              )}
+              {/* IS LOGGED IN REVIEW BUTTON */}
+              {props.isLoggedIn && (
+                <div>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className={classes.serviceButton}
+                    onClick={() => activateReviewBox()}
+                  >
+                    Write a Review
+                  </Button>
+                </div>
+              )}
+              {/* IS NOT LOGGED IN REVIEW BUTTON */}
+              {!props.isLoggedIn && (
+                <div>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className="servicePageButtons"
+                    className={classes.serviceButton}
+                    onClick={handleClickOpen}
+                  >
+                    Review
+                  </Button>
+                  <Dialog open={open} onClose={handleClose}>
+                    <DialogTitle className={classes.dialogue}>
+                      Please Login
+                    </DialogTitle>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={classes.serviceButton}
+                    >
+                      <Link to="/login"> Login Here</Link>
+                    </Button>
+                  </Dialog>
+                </div>
+              )}
+              {/* SHARE BUTTON */}
               <Button
                 variant="contained"
                 color="primary"

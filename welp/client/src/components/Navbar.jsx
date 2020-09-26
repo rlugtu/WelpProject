@@ -5,6 +5,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Searchbar from "./Searchbar";
 import { makeStyles } from "@material-ui/styles";
 import Button from "@material-ui/core/Button";
+import Auth from "../modules/Auth";
 
 const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
@@ -39,7 +40,7 @@ const Navbar = (props) => {
             term={props.term}
             location={props.location}
           />
-          {props.isLoggedIn ? (
+          {Auth.getToken() ? (
             <div className="navLogButtons">
               <Button
                 variant="contained"

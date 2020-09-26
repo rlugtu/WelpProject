@@ -6,6 +6,7 @@ import { Rating } from "@material-ui/lab";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import EditIcon from "@material-ui/icons/Edit";
 import TextField from "@material-ui/core/TextField";
+
 import Auth from "../modules/Auth";
 
 const style = makeStyles({

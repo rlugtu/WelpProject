@@ -258,6 +258,9 @@ a {
   margin: 30px 50px;
   padding: 40px;
 }
+.serviceButtonContainer {
+  display: flex;
+}
 
 /* REVIEW FORM */
 .reviewForm {

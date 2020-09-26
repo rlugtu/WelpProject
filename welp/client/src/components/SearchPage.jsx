@@ -12,7 +12,7 @@ const SearchPage = (props) => {
   };
   return (
     <div className="searchResultsContainer">
-      {props.results ? (
+      {props.results.businesses ? (
         props.results.businesses.map((item, i) => (
           <Link
             to={`/services/${item.name}`}
