@@ -304,7 +304,7 @@ const ServicePage = (props) => {
             <p>{serviceInfo.location.display_address[1]}</p>
             <div className="serviceButtonContainer">
               {/* LOGGED IN BOOKMARK BUTTON */}
-              {props.isLoggedIn && (
+              {Auth.getToken() && (
                 <Button
                   variant="contained"
                   color="primary"
@@ -316,7 +316,7 @@ const ServicePage = (props) => {
                 </Button>
               )}
               {/* IS NOT LOGGED IN  BOOKMARK BUTTON*/}
-              {!props.isLoggedIn && (
+              {!Auth.getToken() && (
                 <div>
                   <Button
                     variant="contained"
@@ -342,7 +342,7 @@ const ServicePage = (props) => {
                 </div>
               )}
               {/* IS LOGGED IN REVIEW BUTTON */}
-              {props.isLoggedIn && (
+              {Auth.getToken() && (
                 <div>
                   <Button
                     variant="contained"
@@ -355,7 +355,7 @@ const ServicePage = (props) => {
                 </div>
               )}
               {/* IS NOT LOGGED IN REVIEW BUTTON */}
-              {!props.isLoggedIn && (
+              {!Auth.getToken() && (
                 <div>
                   <Button
                     variant="contained"
@@ -398,19 +398,22 @@ const ServicePage = (props) => {
               />
             )}
             {serviceReviews ? (
-              <div className="reviewsContainer">
+              <div>
                 <h2>Reviews</h2>
-                {serviceReviews.review.map((review, i) => (
-                  <div key={i} className="individualReviews">
-                    <h3 className="reviewUser">{review.username}</h3>
-                    <Rating
-                      name="reviewRating"
-                      value={review.rating}
-                      readOnly
-                    />
-                    <p>{review.description}</p>
-                  </div>
-                ))}
+                <div className="reviewsContainer">
+                  {serviceReviews.review.map((review, i) => (
+                    <div key={i} className="individualReviews">
+                      <h3 className="reviewUser">{review.username}</h3>
+                      <Rating
+                        name="reviewRating"
+                        value={review.rating}
+                        readOnly
+                      />
+                      <p>{review.description}</p>
+                      <p>{review.created_at}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             ) : (
               <p>No Reviews Yet</p>

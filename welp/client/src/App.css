@@ -215,14 +215,16 @@ a {
   border-left: 1px solid rgba(0, 0, 0, 0.2);
 }
 
+/* SERVICE PAGE  */
+
 .servicePhotoCarousel {
   max-height: 500px;
   max-width: 500px;
   border: 1px solid lightgray;
   padding: 20px;
-  margin: 20px;
+  margin-left: 40px;
+  margin-top: 20px;
 }
-/* SERVICE PAGE  */
 
 .serviceLeftContainer {
   font-size: 1.2rem;
@@ -242,6 +244,7 @@ a {
 }
 .serviceHours {
   padding: 20px;
+  margin-left: 20px;
 }
 .serviceContainer {
   display: flex;
@@ -257,6 +260,20 @@ a {
   border-radius: 5px;
   margin: 30px 50px;
   padding: 40px;
+}
+.reviewsContainer {
+  height: 800px;
+  overflow: auto;
+}
+.individualReviews {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 0 20px;
+  margin: 10px 0;
+}
+.reviewUser {
+  border-bottom: 1px solid lightgrey;
+  padding-bottom: 5px;
 }
 .serviceButtonContainer {
   display: flex;
