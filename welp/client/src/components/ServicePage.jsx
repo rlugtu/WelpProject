@@ -38,6 +38,7 @@ const ServicePage = (props) => {
   const [serviceState, setServiceState] = useState(null);
   const [serviceZip_code, setServiceZip_code] = useState(null);
   const [serviceAddress, setServiceAddress] = useState(null);
+  const [fetchDone, setFetchDone] = useState(false);
   // DB SERVICES && Reviews
   const [existingService, setExistingService] = useState(null);
   const [serviceReviews, setServiceReviews] = useState(null);
@@ -88,6 +89,7 @@ const ServicePage = (props) => {
         setServiceAddress(res.location.address1);
       })
       .then(() => {
+        setFetchDone(true);
         checkService();
       })
       .then(() => {
@@ -105,7 +107,7 @@ const ServicePage = (props) => {
   }, [existingService]);
   useEffect(() => {
     saveService();
-  }, [serviceName]);
+  }, [fetchDone]);
   // check for reviews
   useEffect(() => {
     console.log(serviceUniqueID);
@@ -288,13 +290,14 @@ const ServicePage = (props) => {
                   <p key={i}>{category.title}</p>
                 ))}
             </div>
-            <Rating
-              name="reviewRating"
-              value={serviceInfo.price.length}
-              readOnly
-              icon={<MonetizationOnIcon />}
-            />
-
+            {serviceInfo.price && (
+              <Rating
+                name="reviewRating"
+                value={serviceInfo.price.length}
+                readOnly
+                icon={<MonetizationOnIcon />}
+              />
+            )}
             <p>{serviceInfo.is_closed}</p>
             <p>{serviceInfo.display_phone}</p>
             <p>{serviceInfo.location.display_address[0]}</p>

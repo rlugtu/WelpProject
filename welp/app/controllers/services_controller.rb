@@ -1,5 +1,5 @@
 class ServicesController < ApiController
-    before_action :require_login, except: [:index, :show, :destroy]
+    before_action :require_login, except: [:index, :show, :destroy, :create]
     def index
         services = Service.all
         render json: {services: services}
