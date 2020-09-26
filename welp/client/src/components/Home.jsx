@@ -2,12 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Searchbar from "./Searchbar";
 import Button from "@material-ui/core/Button";
+import Auth from "../modules/Auth";
 
 const Home = (props) => {
   return (
     <div className="homeContainer">
       <div className="homeNav">
-        {props.isLoggedIn ? (
+        {Auth.getToken() ? (
           <div className="navLogButtons">
             <Button
               variant="contained"

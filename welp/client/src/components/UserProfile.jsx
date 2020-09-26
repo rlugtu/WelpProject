@@ -111,7 +111,7 @@ const UserProfile = (props) => {
         location={props.location}
       />
 
-      {props.userInfo && (
+      {!props.userInfo.errors && props.userInfo && (
         <div className="userProfileContainer">
           <div className="userInfoContainer">
             <h1>{props.userInfo.user.name}</h1>
