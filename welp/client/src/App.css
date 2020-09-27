@@ -171,6 +171,7 @@ a {
   height: 85vh;
   overflow: scroll;
   width: 100%;
+  font-size: 1.2rem;
 }
 .servicesSearchContainer {
   display: flex;

@@ -148,6 +148,7 @@ function App() {
               setLocation={setLocation}
               term={term}
               location={location}
+              setServiceResult={setServiceResult}
             />
           )}
         />

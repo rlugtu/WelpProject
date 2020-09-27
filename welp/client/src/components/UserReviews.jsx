@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { Rating } from "@material-ui/lab";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
@@ -48,10 +49,9 @@ const UserReview = (props) => {
       .catch((err) => {
         console.log(err);
       });
+    props.getUserInfo();
   };
   const deleteReview = (id) => {
-    props.getUserInfo();
-
     fetch(`/reviews/${id}`, {
       method: "DELETE",
       credentials: "include",
@@ -132,6 +132,21 @@ const UserReview = (props) => {
       >
         <HighlightOffIcon />
       </Button>
+      <Link
+        to={`/services/${props.name}`}
+        onClick={() => {
+          props.setServiceResult(props.yelp_id);
+        }}
+      >
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.serviceButton}
+          onClick={() => createTextBox()}
+        >
+          Visit
+        </Button>
+      </Link>
     </div>
   );
 };

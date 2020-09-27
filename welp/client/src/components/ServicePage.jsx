@@ -10,6 +10,7 @@ import Auth from "../modules/Auth";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
+
 const style = makeStyles({
   serviceButton: {
     margin: 5,
@@ -206,7 +207,7 @@ const ServicePage = (props) => {
     })
       .then((res) => res.json())
       .then((res) => {
-        if (!props.isLoggedIn) alert("Please Log In");
+        if (!Auth.getToken()) alert("Please Log In");
         // console.log(res);
       })
       .catch((err) => {
@@ -266,7 +267,7 @@ const ServicePage = (props) => {
   };
   const activateReviewBox = () => {
     saveService();
-    if (props.isLoggedIn) {
+    if (Auth.getToken()) {
       setActivateReview(!activateReview);
     } else {
       alert("Please Log In");
@@ -275,7 +276,26 @@ const ServicePage = (props) => {
   const userReviewSubmit = (e) => {
     reviewSubmit(e);
   };
-
+  //  FORMAT TIME FUNCTIONS
+  const formatDayHour = (e) => {
+    if (e === 0) return "Monday";
+    else if (e === 1) return "Tuesday";
+    else if (e === 2) return "Wednesday";
+    else if (e === 3) return "Thursday";
+    else if (e === 4) return "Friday";
+    else if (e === 5) return "Saturday";
+    else return "Sunday";
+  };
+  const formatHour = (e) => {
+    let hour = e.slice(0, 2) % 12;
+    if (hour === 0) hour = 12;
+    return (
+      (hour < 10 ? "0" : "") +
+      hour +
+      e.slice(2) +
+      (e.slice(0, 2) < 12 ? "am" : "pm")
+    );
+  };
   // DELETE REVIEWS & DELETE BOOKMARKS FUNCTION
 
   return (
@@ -410,7 +430,9 @@ const ServicePage = (props) => {
                         readOnly
                       />
                       <p>{review.description}</p>
-                      <p>{review.created_at}</p>
+                      {/* <Moment>{review.created_at}</Moment> */}
+                      <p>{review.created_at.slice(0, 10)}</p>
+                      {/* <p>{Time.now.strftime("%m/%d/%Y")}</p> */}
                     </div>
                   ))}
                 </div>
@@ -441,7 +463,8 @@ const ServicePage = (props) => {
               {serviceInfo.hours ? (
                 serviceInfo.hours[0].open.map((dayHour, i) => (
                   <p key={i}>
-                    {dayHour.day}: {dayHour.start} - {dayHour.end}
+                    {formatDayHour(dayHour.day)}: {formatHour(dayHour.start)} -{" "}
+                    {formatHour(dayHour.end)}
                   </p>
                 ))
               ) : (

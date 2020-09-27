@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import UserReviews from "./UserReviews";
-
+import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import { Rating } from "@material-ui/lab";
@@ -103,7 +103,16 @@ const UserProfile = (props) => {
                     {props.userInfo.bookmarks &&
                       props.userInfo.bookmarks.map((bookmark, i) => (
                         <div className="individualBookmarkContainer" key={i}>
-                          <p>{bookmark.name}</p>
+                          <Link
+                            to={`/services/${bookmark.name}`}
+                            key={i}
+                            onClick={() => {
+                              props.setServiceResult(bookmark.yelp_id);
+                              // localStorage.setItem("serviceResult", JSON.stringify(item.id));
+                            }}
+                          >
+                            <p>{bookmark.name}</p>
+                          </Link>
                           <Button
                             variant="contained"
                             color="primary"
@@ -131,6 +140,8 @@ const UserProfile = (props) => {
                             description={review.description}
                             id={review.id}
                             getUserInfo={props.getUserInfo}
+                            setServiceResult={props.setServiceResult}
+                            yelp_id={review.yelp_id}
                           />
                         </div>
                       ))}
