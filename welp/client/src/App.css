@@ -350,6 +350,7 @@ a {
   display: flex;
   justify-content: space-between;
 }
+
 .deleteButton {
   height: 3rem;
   width: 100px;

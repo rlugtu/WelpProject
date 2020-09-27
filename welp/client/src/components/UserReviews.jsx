@@ -26,8 +26,9 @@ const UserReview = (props) => {
     setOpenTextBox(!openTextBox);
   };
 
-  const updateReview = (id) => {
-    fetch(`/reviews/${id}`, {
+  const updateReview = (e) => {
+    e.preventDefault();
+    fetch(`/reviews/${props.id}`, {
       method: "PUT",
       credentials: "include",
       body: JSON.stringify({
@@ -44,12 +45,13 @@ const UserReview = (props) => {
     })
       .then((res) => res.json())
       .then((res) => {
+        props.getUserInfo();
+        createTextBox();
         console.log(res);
       })
       .catch((err) => {
         console.log(err);
       });
-    props.getUserInfo();
   };
   const deleteReview = (id) => {
     fetch(`/reviews/${id}`, {
@@ -71,7 +73,7 @@ const UserReview = (props) => {
       <p>{props.description}</p>
       <p>{props.created_at}</p>
       {openTextBox && (
-        <form onSubmit={() => updateReview(props.id)} className="reviewForm">
+        <form onSubmit={updateReview} className="reviewForm">
           <h2 className="reviewHeader">What do you think?</h2>
           <h4>Rating</h4>
           <Rating

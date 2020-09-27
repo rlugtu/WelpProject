@@ -129,7 +129,7 @@ const UserProfile = (props) => {
                   </div>
                 )}
                 {showReviews && (
-                  <div className="reviewsContainer">
+                  <div className="profileReviewsContainer">
                     <h1>My Reviews</h1>
                     {props.userInfo.reviews &&
                       props.userInfo.reviews.map((review, i) => (
