@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import AliceCarousel from "react-alice-carousel";
 import { Link } from "react-router-dom";
 import ReviewForm from "./ReviewForm";
 import { Rating } from "@material-ui/lab";
@@ -10,6 +9,11 @@ import Auth from "../modules/Auth";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
+import Snackbar from "@material-ui/core/Snackbar";
+import Alert from "@material-ui/lab/Alert";
+
+import { Slide } from "react-slideshow-image";
+import "react-slideshow-image/dist/styles.css";
 
 const style = makeStyles({
   serviceButton: {
@@ -18,6 +22,9 @@ const style = makeStyles({
   },
   dialogue: {
     padding: 10,
+  },
+  alerts: {
+    fontSize: 25,
   },
 });
 const ServicePage = (props) => {
@@ -53,15 +60,24 @@ const ServicePage = (props) => {
   const [serviceUniqueID, setServiceUniqueID] = useState(null);
 
   // BUTTON STATES
-  const [open, setOpen] = React.useState(false);
-
+  const [open, setBookmarkOpen] = useState(false);
+  const [reviewOpen, setReviewOpen] = useState(false);
   const handleClickOpen = () => {
-    setOpen(true);
+    setBookmarkOpen(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setBookmarkOpen(false);
   };
+
+  const handleReviewClickOpen = () => {
+    setReviewOpen(true);
+  };
+
+  const handleReviewClose = () => {
+    setReviewOpen(false);
+  };
+
   useEffect(() => {
     fetch(
       `https://cors-anywhere.herokuapp.com/api.yelp.com/v3/businesses/${props.serviceResult}`,
@@ -213,6 +229,7 @@ const ServicePage = (props) => {
       .catch((err) => {
         console.log(err);
       });
+    handleClick();
   };
   const reviewSubmit = (e) => {
     e.preventDefault();
@@ -245,6 +262,20 @@ const ServicePage = (props) => {
       .catch((err) => {
         console.log(err);
       });
+    handleReviewClickOpen();
+  };
+
+  const handleClick = () => {
+    setBookmarkOpen(true);
+  };
+
+  const handleAlertClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setBookmarkOpen(false);
+    setReviewOpen(false);
   };
 
   // GET REVIEWS FROM SERVICE
@@ -325,15 +356,30 @@ const ServicePage = (props) => {
             <div className="serviceButtonContainer">
               {/* LOGGED IN BOOKMARK BUTTON */}
               {Auth.getToken() && (
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className="servicePageButtons"
-                  className={classes.serviceButton}
-                  onClick={() => userBookmarkService()}
-                >
-                  Bookmark
-                </Button>
+                <div>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className="servicePageButtons"
+                    className={classes.serviceButton}
+                    onClick={() => userBookmarkService()}
+                  >
+                    Bookmark
+                  </Button>
+                  <Snackbar
+                    open={open}
+                    autoHideDuration={6000}
+                    onClose={handleAlertClose}
+                  >
+                    <Alert
+                      onClose={handleAlertClose}
+                      className={classes.alerts}
+                      severity="success"
+                    >
+                      Bookmark Saved!
+                    </Alert>
+                  </Snackbar>
+                </div>
               )}
               {/* IS NOT LOGGED IN  BOOKMARK BUTTON*/}
               {!Auth.getToken() && (
@@ -372,6 +418,19 @@ const ServicePage = (props) => {
                   >
                     Write a Review
                   </Button>
+                  <Snackbar
+                    open={reviewOpen}
+                    autoHideDuration={6000}
+                    onClose={handleAlertClose}
+                  >
+                    <Alert
+                      onClose={handleAlertClose}
+                      className={classes.alerts}
+                      severity="success"
+                    >
+                      We've posted your review!
+                    </Alert>
+                  </Snackbar>
                 </div>
               )}
               {/* IS NOT LOGGED IN REVIEW BUTTON */}
@@ -400,14 +459,6 @@ const ServicePage = (props) => {
                   </Dialog>
                 </div>
               )}
-              {/* SHARE BUTTON */}
-              <Button
-                variant="contained"
-                color="primary"
-                className={classes.serviceButton}
-              >
-                Share
-              </Button>
             </div>
 
             {activateReview && (
@@ -430,9 +481,7 @@ const ServicePage = (props) => {
                         readOnly
                       />
                       <p>{review.description}</p>
-                      {/* <Moment>{review.created_at}</Moment> */}
                       <p>{review.created_at.slice(0, 10)}</p>
-                      {/* <p>{Time.now.strftime("%m/%d/%Y")}</p> */}
                     </div>
                   ))}
                 </div>
@@ -444,16 +493,18 @@ const ServicePage = (props) => {
           <div className="serviceRightContainer">
             {servicePhotos ? (
               <div className="servicePhotoCarousel">
-                <AliceCarousel autoPlay={true} autoPlayInterval={2000}>
-                  {servicePhotos.map((photo, i) => (
-                    <img
-                      className="foodCarouselPhoto"
-                      src={photo}
-                      alt="food pictures"
-                      key={i}
-                    />
-                  ))}
-                </AliceCarousel>
+                <div className="foodPhotoPadding">
+                  <Slide>
+                    {servicePhotos.map((photo, i) => (
+                      <img
+                        className="foodCarouselPhoto"
+                        src={photo}
+                        alt="food pictures"
+                        key={i}
+                      />
+                    ))}
+                  </Slide>
+                </div>
               </div>
             ) : (
               <p>loading photos...</p>

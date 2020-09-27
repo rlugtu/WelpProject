@@ -9,6 +9,7 @@
     "react-alice-carousel": "^1.19.3",
     "react-elastic-carousel": "^0.7.5",
     "react-router-dom": "^5.2.0",
+    "react-slideshow-image": "^3.3.0",
     "styled-components": "^5.2.0",
     "yelp-fusion": "^3.0.0"
   },

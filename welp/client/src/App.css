@@ -219,12 +219,22 @@ a {
 /* SERVICE PAGE  */
 
 .servicePhotoCarousel {
-  max-height: 500px;
-  max-width: 500px;
+  width: 500px;
+  height: 500px;
   border: 1px solid lightgray;
   padding: 20px;
   margin-left: 40px;
   margin-top: 20px;
+}
+.foodPhotoPadding {
+  width: 500px;
+  height: 480px;
+  overflow: hidden;
+}
+.foodCarouselPhoto {
+  width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 .serviceLeftContainer {
@@ -237,12 +247,7 @@ a {
   font-size: 3rem;
   margin: 20px 0;
 }
-.foodCarouselPhoto {
-  max-height: 400px;
-  max-width: 500px;
-  overflow: hidden;
-  object-fit: cover;
-}
+
 .serviceHours {
   padding: 20px;
   margin-left: 20px;
@@ -265,6 +270,7 @@ a {
 .reviewsContainer {
   height: 800px;
   overflow: auto;
+  width: 600px;
 }
 .individualReviews {
   border: 1px solid lightgray;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 import { Rating } from "@material-ui/lab";
@@ -10,9 +10,7 @@ const SearchPage = (props) => {
   // const [results, setResults] = useState(result);
   // setResults(result);
   // console.log(results);
-  const saveData = () => {
-    props.setServiceResult();
-  };
+
   const priceToString = (e) => {
     // console.log(`${e}`.length);
     return `${e}`;

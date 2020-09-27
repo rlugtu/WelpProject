@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { Route, Redirect } from "react-router-dom";
 
@@ -50,6 +50,8 @@ function App() {
           console.log("Auth", Auth);
           setIsLoggedIn(true);
           // console.log(Auth);
+        } else {
+          alert("invalid user");
         }
       })
       .then(() => {
