@@ -52,6 +52,7 @@ Welp is a business directory app that allows users to find, bookmark, and review
 - run yarn add or npm install to install all package dependencies
 - register for a free yelp fusion API key
   - create a .env file and within this .env file set REACT_APP_YELP_KEY=(YOUR_API_KEY) without parenthesis
+- run migrations with rails db:migrate
 - to run locally use bundle exec foreman start
 
 ## Future improvements
