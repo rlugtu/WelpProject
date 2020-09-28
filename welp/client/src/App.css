@@ -91,6 +91,7 @@ a {
   justify-content: center;
   align-items: center;
   width: 400px;
+  margin-bottom: 100px;
 }
 .registerForm {
   display: flex;
@@ -151,12 +152,12 @@ a {
   flex-direction: column;
   align-items: center;
   height: 100%;
-
   background-image: url("https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1655&q=80");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  overflow: auto;
 }
 .homeLogo {
   margin-top: 100px;
@@ -268,9 +269,10 @@ a {
   padding: 40px;
 }
 .reviewsContainer {
-  height: 800px;
+  max-height: 800px;
   overflow: auto;
   width: 600px;
+  padding-right: 20px;
 }
 .individualReviews {
   border: 1px solid lightgray;
@@ -321,12 +323,43 @@ a {
   background-color: rgba(245, 245, 245, 1);
   padding: 0 40px;
   width: 300px;
-  border-radius: 5px;
-  height: 500px;
+  border-radius: 10px;
+  height: 350px;
 }
+.userProfileButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.userCategoriesContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border-top: 1px solid lightgray;
+  margin: 10px 0;
+  padding-top: 10px;
+}
+.editUserInfoContainer {
+  padding: 30px;
+  padding-top: 20px;
+  margin: 0 30px;
+  width: 1000px;
+  height: auto;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    1px 5px 6px 1px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 5px;
+}
+
+.editHeader {
+  margin: 0;
+}
+.reviewTextBox {
+  width: 100%;
+}
+
 .bookmarksAndReviewsContainer {
-  margin: 0 50px;
-  padding: 0 40px;
+  margin: 0 20px;
+  padding: 0 20px;
   width: 1000px;
   height: 1000px;
   overflow: scroll;

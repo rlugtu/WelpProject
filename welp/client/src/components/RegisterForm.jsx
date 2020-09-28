@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import Input from "@material-ui/core/Input";
 import Button from "@material-ui/core/Button";
 import Auth from "../modules/Auth";
+import TextField from "@material-ui/core/TextField";
 
 const RegisterForm = (props) => {
   const [username, setUsername] = useState("");
@@ -106,13 +107,26 @@ const RegisterForm = (props) => {
           className="usernameInput"
           value={zip_code}
         />
-        <Input
+        {/* <Input
           name="about"
           placeholder="About Me"
           className="usernameInput"
           onInput={(e) => setAbout(e.target.value)}
           value={about}
+        /> */}
+
+        <TextField
+          name="about"
+          placeholder="About Me"
+          multiline
+          rows="4"
+          variant="outlined"
+          className="reviewTextBox"
+          required
+          value={about}
+          onChange={(e) => setAbout(e.target.value)}
         />
+
         <Input
           name="username"
           placeholder="Username"

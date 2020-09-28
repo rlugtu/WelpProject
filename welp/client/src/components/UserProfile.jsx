@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import UserReviews from "./UserReviews";
+import UserUpdateForm from "./UserUpdateForm";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
@@ -25,13 +26,20 @@ const UserProfile = (props) => {
   const [showBookmarks, setShowBookmarks] = useState(true);
   const [showReviews, setShowReviews] = useState(false);
 
+  const [editUser, setEditUser] = useState(false);
+
+  const activateEditUser = () => {
+    setEditUser(!editUser);
+  };
   const triggerShowBookmarks = () => {
     setShowBookmarks(true);
     setShowReviews(false);
+    setEditUser(false);
   };
   const triggerShowReviews = () => {
     setShowReviews(true);
     setShowBookmarks(false);
+    setEditUser(false);
   };
   // update user info every mount
   useEffect(() => {
@@ -74,80 +82,100 @@ const UserProfile = (props) => {
                 <p>
                   {props.userInfo.user.city}, {" " + props.userInfo.user.state}
                 </p>
-              </div>
 
-              <div className="bookmarksAndReviewsContainer">
                 <div className="userProfileButtons">
                   <Button
                     variant="contained"
                     className="loginButtons"
                     color="primary"
-                    onClick={() => triggerShowBookmarks()}
+                    onClick={() => activateEditUser()}
                     className={classes.serviceButton}
                   >
-                    Bookmarks
+                    Update Info
                   </Button>
-                  <Button
-                    variant="contained"
-                    className="loginButtons"
-                    color="primary"
-                    onClick={() => triggerShowReviews()}
-                    className={classes.serviceButton}
-                  >
-                    Reviews
-                  </Button>
+                  <div className="userCategoriesContainer">
+                    <Button
+                      variant="contained"
+                      className="loginButtons"
+                      color="primary"
+                      onClick={() => triggerShowBookmarks()}
+                      className={classes.serviceButton}
+                    >
+                      Bookmarks
+                    </Button>
+                    <Button
+                      variant="contained"
+                      className="loginButtons"
+                      color="primary"
+                      onClick={() => triggerShowReviews()}
+                      className={classes.serviceButton}
+                    >
+                      Reviews
+                    </Button>
+                  </div>
                 </div>
-                {showBookmarks && (
-                  <div>
-                    <h1>My Bookmarks</h1>
-                    {props.userInfo.bookmarks &&
-                      props.userInfo.bookmarks.map((bookmark, i) => (
-                        <div className="individualBookmarkContainer" key={i}>
-                          <Link
-                            to={`/services/${bookmark.name}`}
-                            key={i}
-                            onClick={() => {
-                              props.setServiceResult(bookmark.yelp_id);
-                              // localStorage.setItem("serviceResult", JSON.stringify(item.id));
-                            }}
-                          >
-                            <p>{bookmark.name}</p>
-                          </Link>
-                          <Button
-                            variant="contained"
-                            color="primary"
-                            className={classes.serviceButton}
-                            onClick={() => {
-                              deleteBookmark(bookmark.id);
-                              props.getUserInfo();
-                            }}
-                          >
-                            <HighlightOffIcon />
-                          </Button>
-                        </div>
-                      ))}
-                  </div>
-                )}
-                {showReviews && (
-                  <div className="profileReviewsContainer">
-                    <h1>My Reviews</h1>
-                    {props.userInfo.reviews &&
-                      props.userInfo.reviews.map((review, i) => (
-                        <div key={i} className="individualReviewContainer">
-                          <UserReviews
-                            rating={review.rating}
-                            name={review.name}
-                            description={review.description}
-                            id={review.id}
-                            getUserInfo={props.getUserInfo}
-                            setServiceResult={props.setServiceResult}
-                            yelp_id={review.yelp_id}
-                          />
-                        </div>
-                      ))}
-                  </div>
-                )}
               </div>
+              {editUser && (
+                <UserUpdateForm
+                  userInfo={props.userInfo}
+                  getUserInfo={props.getUserInfo}
+                  activateEditUser={activateEditUser}
+                />
+              )}
+              {!editUser && (
+                <div className="bookmarksAndReviewsContainer">
+                  {showBookmarks && (
+                    <div>
+                      <h1>My Bookmarks</h1>
+                      {props.userInfo.bookmarks &&
+                        props.userInfo.bookmarks.map((bookmark, i) => (
+                          <div className="individualBookmarkContainer" key={i}>
+                            <Link
+                              to={`/services/${bookmark.name}`}
+                              key={i}
+                              onClick={() => {
+                                props.setServiceResult(bookmark.yelp_id);
+                                // localStorage.setItem("serviceResult", JSON.stringify(item.id));
+                              }}
+                            >
+                              <p>{bookmark.name}</p>
+                            </Link>
+                            <Button
+                              variant="contained"
+                              color="primary"
+                              className={classes.serviceButton}
+                              onClick={() => {
+                                deleteBookmark(bookmark.id);
+                                props.getUserInfo();
+                              }}
+                            >
+                              <HighlightOffIcon />
+                            </Button>
+                          </div>
+                        ))}
+                    </div>
+                  )}
+                  {showReviews && (
+                    <div className="profileReviewsContainer">
+                      <h1>My Reviews</h1>
+                      {props.userInfo.reviews &&
+                        props.userInfo.reviews.map((review, i) => (
+                          <div key={i} className="individualReviewContainer">
+                            <UserReviews
+                              rating={review.rating}
+                              name={review.name}
+                              description={review.description}
+                              id={review.id}
+                              getUserInfo={props.getUserInfo}
+                              setServiceResult={props.setServiceResult}
+                              yelp_id={review.yelp_id}
+                            />
+                          </div>
+                        ))}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           )}
           <div className="testFooter"></div>

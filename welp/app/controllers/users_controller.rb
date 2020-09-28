@@ -14,9 +14,18 @@ end
     user = User.find_by!(auth_token: request.headers[:token])
     user_reviews = Review.where(user_id: user.id)
     user_bookmarks = Bookmark.where(user_id: user.id)
-    render json: { user: { username: user.username, email: user.email, name: user.name, about: user.about, state: user.state, city: user.city, zip_code: user.zip_code, birthday: user.birthday }, reviews: user_reviews, bookmarks: user_bookmarks}
+    render json: { user: { username: user.username, email: user.email, name: user.name, about: user.about, state: user.state, city: user.city, zip_code: user.zip_code, birthday: user.birthday, user_id: user.id }, reviews: user_reviews, bookmarks: user_bookmarks}
 
   end
+
+  def update
+    user = User.find(params[:id])
+    if user.update(user_params)
+        render json: user
+    else
+        render json: user.errors, status: :unprocessable_entity
+    end
+end
 
   def destroy 
     user = User.find(params[:id])
