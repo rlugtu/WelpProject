@@ -404,6 +404,13 @@ const ServicePage = (props) => {
                     >
                       <Link to="/login"> Login Here</Link>
                     </Button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={classes.serviceButton}
+                    >
+                      <Link to="/register">Register</Link>
+                    </Button>
                   </Dialog>
                 </div>
               )}
@@ -455,6 +462,13 @@ const ServicePage = (props) => {
                       className={classes.serviceButton}
                     >
                       <Link to="/login"> Login Here</Link>
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={classes.serviceButton}
+                    >
+                      <Link to="/register">Register</Link>
                     </Button>
                   </Dialog>
                 </div>
