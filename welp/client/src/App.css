@@ -171,25 +171,28 @@ a {
 .searchResultsContainer {
   height: 85vh;
   overflow: scroll;
-  width: 100%;
-  font-size: 1.2rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1rem;
 }
 .servicesSearchContainer {
   display: flex;
   justify-content: center;
-  margin: 30px 200px;
+  width: 1000px;
   padding: 20px;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     1px 5px 6px 1px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
   border-radius: 5px;
+  margin: 20px 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 .servicesSearchContainer:hover {
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 .serviceSearchDiv {
   display: flex;
-  width: 20%;
-  padding: 20px;
+  width: 500px;
   flex-grow: 2;
   cursor: pointer;
 }
@@ -212,24 +215,32 @@ a {
 }
 
 .serviceUserOptions {
-  padding: 20px;
+  padding: 10px;
   flex-grow: 1;
   border-left: 1px solid rgba(0, 0, 0, 0.2);
+}
+.serviceUserOptions > h3 {
+  margin: 0;
 }
 
 /* SERVICE PAGE  */
 
+.serviceRightContainer {
+  width: 400px;
+}
 .servicePhotoCarousel {
-  width: 500px;
-  height: 500px;
+  display: flex;
+  justify-content: center;
+  width: 350px;
+  height: 350px;
   border: 1px solid lightgray;
   padding: 20px;
-  margin-left: 40px;
-  margin-top: 20px;
+  /* margin-left: 40px;
+  margin-top: 20px; */
 }
 .foodPhotoPadding {
-  width: 500px;
-  height: 480px;
+  width: 350px;
+  height: 350px;
   overflow: hidden;
 }
 .foodCarouselPhoto {
@@ -238,8 +249,8 @@ a {
   object-fit: contain;
 }
 
-.serviceLeftContainer {
-  font-size: 1.2rem;
+.serviceLeftContainer > h1 {
+  font-size: 2rem;
 }
 .serviceLeftContainer p {
   margin: 1rem 0;
@@ -249,10 +260,6 @@ a {
   margin: 20px 0;
 }
 
-.serviceHours {
-  padding: 20px;
-  margin-left: 20px;
-}
 .serviceContainer {
   display: flex;
   justify-content: center;
@@ -261,18 +268,20 @@ a {
   display: flex;
   justify-content: space-between;
   height: 100%;
-  width: 1200px;
+  width: 1000px;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     1px 5px 6px 1px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
   border-radius: 5px;
   margin: 30px 50px;
   padding: 40px;
+  font-size: 1rem;
 }
 .reviewsContainer {
-  max-height: 800px;
+  max-height: 600px;
   overflow: auto;
-  width: 600px;
+  min-width: 500px;
   padding-right: 20px;
+  font-size: 1rem;
 }
 .individualReviews {
   border: 1px solid lightgray;
@@ -298,6 +307,7 @@ a {
   border-radius: 5px;
   margin-top: 20px;
   box-sizing: inherit;
+  margin-right: 40px;
 }
 .reviewHeader {
   margin: 0;
@@ -311,7 +321,7 @@ a {
 .userProfileContainer {
   display: flex;
   height: 10;
-  width: 1200px;
+  width: 1000px;
   /* box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     1px 5px 6px 1px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12); */
   border-radius: 5px;

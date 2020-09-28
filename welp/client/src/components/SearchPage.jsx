@@ -34,8 +34,8 @@ const SearchPage = (props) => {
                   <img
                     src={item.image_url}
                     className="searchServiceImage"
-                    height="200px"
-                    width="250px"
+                    height="150px"
+                    width="200px"
                     alt={"service logo"}
                   />
                 </div>
