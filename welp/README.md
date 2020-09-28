@@ -1,5 +1,9 @@
 # Welp
 
+## Heroku Deployment
+
+[Welp](https://ohwelp.herokuapp.com/)
+
 ## Business Directory App
 
 Welp is a business directory app that allows users to find, bookmark, and review different businesses. Businesses will be accessed through the yelp fusion api.
@@ -44,6 +48,7 @@ Welp is a business directory app that allows users to find, bookmark, and review
 ## Installation
 
 - Download this repo
+- cd into welp
 - run yarn add or npm install to install all package dependencies
 - register for a free yelp fusion API key
   - create a .env file and within this .env file set REACT_APP_YELP_KEY=(YOUR_API_KEY) without parenthesis

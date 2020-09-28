@@ -1,5 +1,9 @@
 # Welp
 
+## Heroku Deployment
+
+[Welp](https://ohwelp.herokuapp.com/)
+
 ## Business Directory App
 
 Welp is a business directory app that allows users to find, bookmark, and review different businesses. Businesses will be accessed through the yelp fusion api.
